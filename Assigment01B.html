@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Water Intake 🎰</title>
+</head>
+<body>
+	<h1>Water Intake Calculator</h1>
+
+	<label for="time">Time in Hours (Cycling): </label>
+	<input type="number" id="time">
+	<button onclick="calculateWaterIntake()">Calculate</button>
+
+	<p id="result"></p>
+
+	<h1>Years Reached</h1>
+
+	<label for="age">Age: </label>
+	<input type="number" id="age">
+	<button onclick="displayYearsReached()">Display</button>
+
+	<p id="yearsReached"></p>
+
+	<h1>Capital Obtained</h1>
+
+	<label for="amount">Amount to Invest: </label>
+	<input type="number" id="amount">
+
+	<label for="interestRate">Annual Interest Rate (%): </label>
+	<input type="number" id="interestRate">
+
+	<label for="years">Years to Invest: </label>
+	<input type="number" id="years">
+
+	<button onclick="calculateCapital()">Calculate</button>
+
+	<div id="capitalObtained"></div>
+
+	<script>
+		function calculateWaterIntake() {
+			const time = document.getElementById("time").value;
+			const waterIntakePerHour = 0.5;
+			const totalWaterIntake = waterIntakePerHour * time;
+			const result = Math.floor(totalWaterIntake * 10) / 10;
+			document.getElementById("result").innerHTML = `Nathan will drink ${result} liters of water.`;
+		}
+
+		function displayYearsReached() {
+			const age = document.getElementById("age").value;
+			let yearsReached = "";
+			for (let i = 1; i <= age; i++) {
+				yearsReached += `Year ${i}<br>`;
+			}
+			document.getElementById("yearsReached").innerHTML = yearsReached;
+		}
+
+		function calculateCapital() {
+			const amount = document.getElementById("amount").value;
+			const interestRate = document.getElementById("interestRate").value;
+			const years = document.getElementById("years").value;
+			let capital = amount;
+			let capitalObtained = "<ul>";
+			for (let i = 1; i <= years; i++) {
+				const interest = (capital * interestRate) / 100;
+				capital += interest;
+				capitalObtained += `<li>Capital after ${i} year(s): ${capital.toFixed(2)}€</li>`;
+			}
+			capitalObtained += "</ul>";
+			document.getElementById("capitalObtained").innerHTML = capitalObtained;
+		}
+	</script>
+</body>
+</html>
